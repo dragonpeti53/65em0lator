@@ -11,6 +11,9 @@ int main(int argc, char **argv) {
 
     cpu.execute();
 
-    printf("%x", cpu.A);
+    //printf("%x", cpu.A);
 
+    if (cpu.A == 255) {
+        puts("success");
+    }
 }

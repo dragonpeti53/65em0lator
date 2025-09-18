@@ -6,6 +6,8 @@ TEST_SOURCES = $(SRC_DIR)/cpu.cpp $(SRC_DIR)/memory.cpp $(SRC_DIR)/test.cpp
 BUILD_DIR = build
 BUILD_SOURCES = $(SRC_DIR)/cpu.cpp $(SRC_DIR)/memory.cpp $(SRC_DIR)/video.cpp
 
+.PHONY: test
+
 test: $(TEST_SOURCES)
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(FLAGS) $(TEST_SOURCES) -o $(BUILD_DIR)/test
@@ -16,3 +18,6 @@ build: $(BUILD_SOURCES)
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+check: clean test
+	./build/test test/test.bin

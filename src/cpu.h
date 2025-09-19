@@ -1,8 +1,9 @@
-#ifndef MOS6502_CPU_H
-#define MOS6502_CPU_H
+#include "types.h"
 
-using byte = unsigned char;
-using word = unsigned short;
+#ifndef CPU_H
+#define CPU_H
+
+
 
 struct CPU;
 

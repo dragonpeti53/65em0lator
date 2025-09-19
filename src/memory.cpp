@@ -1,18 +1,37 @@
 #include "memory.h"
+#include <fstream>
+#include <iostream>
 
-#include <cstdio>
+std::streamsize fileSize(std::ifstream& file) {
+    
+    file.seekg(0, std::ios::end);
+    std::streamsize size = file.tellg();
+    file.seekg(0, std::ios::beg);
 
-int initMemory(byte *memory, char* filename) {
-    FILE* file = fopen(filename, "rb");
-	if (file == NULL) {
-		printf("Can't open file %s\n", filename);
-		return -1;
-	}
+    return size;
+}
 
-    //fseek(file, 0, SEEK_END);
-    //fseek(file, 0, SEEK_SET);
+int initMemory(byte* memory, char* filename) {
 
-    fread(memory, 65536, 1, file);
+    std::ifstream file(filename, std::ios::binary);
 
-	return 0;
+    if (!file) {
+        std::cout << "file couldnt be opened";
+        return 1;
+    }
+
+    std::streamsize size = fileSize(file);
+    if (size <= 0) {
+        std::cout << "file cant be empty";
+        return 1;
+    }
+
+    file.read(reinterpret_cast<char*>(memory), size);
+    std::streamsize bytesRead = file.gcount();
+    if (bytesRead < size) {
+        std::cout << "not all bytes have been read";
+        return 1;
+    }
+
+    return 0;
 }

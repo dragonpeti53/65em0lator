@@ -1,4 +1,4 @@
-#ifndef MOS6502_UTIL_H
-#define MOS6502_UTIL_H
+#ifndef UTIL_H
+#define UTIL_H
 
 #endif //MOS6502_UTIL_H

@@ -7,7 +7,10 @@ int main(int argc, char **argv) {
 
     char* filename = argv[1];
 
-    if( (initMemory(memory, filename)) == (-1)) return -1;
+    if( (initMemory(memory, filename)) == (1)) {
+        puts("memory init failed");
+        return 1;
+    }
 
     cpu.execute();
 
@@ -15,5 +18,5 @@ int main(int argc, char **argv) {
 
     if (cpu.A == 255) {
         puts("success");
-    }
+    } else { puts("test failed"); }
 }

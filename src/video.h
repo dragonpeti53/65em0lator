@@ -1,5 +1,5 @@
-#ifndef MOS6502_VIDEO_H
-#define MOS6502_VIDEO_H
+#ifndef VIDEO_H
+#define VIDEO_H
 
 #define VBASE 63487 // leaves 2KB for text mode and stuff
 
